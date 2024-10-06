@@ -25,10 +25,23 @@ public enum MemberService {
     //login
     public MemberDTO login(String mid, String mpw) throws Exception {
 
-        MemberVO vo = dao.getWithPassword(mid,mpw);
+        MemberVO vo = dao.getWithPassword(mid, mpw);
 
-        MemberDTO memberDTO = modelMapper.map(vo,MemberDTO.class);
+        MemberDTO memberDTO = modelMapper.map(vo, MemberDTO.class);
 
-        return  memberDTO;
+        return memberDTO;
+    }
+
+    public void updateUuid(String mid, String uuid) throws Exception {
+        dao.updateUuid(mid, uuid);
+    }
+
+
+    public MemberDTO getByUUID(String uuid) throws Exception {
+        MemberVO vo = dao.selectUUID(uuid);
+
+        MemberDTO memberDTO = modelMapper.map(vo, MemberDTO.class);
+
+        return memberDTO;
     }
 }
